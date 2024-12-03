@@ -39,7 +39,7 @@ class LogAnalyzer:
         
         return flagged_ips
     
-    def save_to_csv(self, ip_counts, most_accessed, suspicious_ips, output_file="log_analysis.csv"):
+    def save_to_csv(self, ip_counts, most_accessed, suspicious_ips, output_file="log_analysis_results.csv"):
         """Saves the results to a CSV file."""
         with open(output_file, 'w', newline='') as csvfile:
             writer = csv.writer(csvfile)
@@ -48,19 +48,19 @@ class LogAnalyzer:
             writer.writerow(["Analysis Type", "Detail", "Count"])
             
             
-            writer.writerow(["IP Access Counts", "IP Address", "Count"])
+            writer.writerow(["IP Access Counts", "IP Address", "Request Count"])
             for ip, count in ip_counts.items():
                 writer.writerow(["", ip, count])
             
             
             writer.writerow([])
-            writer.writerow(["Most Accessed Endpoint", "Endpoint", "Count"])
+            writer.writerow(["Most Accessed Endpoint", "Endpoint", "Access Count"])
             for endpoint, count in most_accessed.items():
                 writer.writerow(["", endpoint, count])
             
             
             writer.writerow([])
-            writer.writerow(["Suspicious Activity", "IP Address", "Failed Login Attempts"])
+            writer.writerow(["Suspicious Activity", "IP Address", "Failed Login Count"])
             for ip, count in suspicious_ips.items():
                 writer.writerow(["", ip, count])
         
